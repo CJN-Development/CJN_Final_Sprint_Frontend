@@ -1,0 +1,24 @@
+{
+  "name": "cjn_final_sprint_frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CJN-Development/CJN_Final_Sprint_Frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CJN-Development/CJN_Final_Sprint_Frontend/issues"
+  },
+  "homepage": "https://github.com/CJN-Development/CJN_Final_Sprint_Frontend#readme",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}
