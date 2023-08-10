@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { BrowserRouter ,Route, Routes } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./App";
+import Search from "./search";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-        <Route path='/*' element={<App />}/>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/Search" element={<Search />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
-
-

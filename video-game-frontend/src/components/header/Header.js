@@ -1,14 +1,14 @@
 import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import './Header.css'; // You can create and import a separate CSS file for styling
+import './Header.css';
 
 function Header() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container fluid>
         <Navbar.Brand href="/" style={{ color: 'gold' }}>
-          Gold
+        CJND Digital Dynasty
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -16,8 +16,8 @@ function Header() {
             <NavLink className="nav-link" to="/">
               Home
             </NavLink>
-            <NavLink className="nav-link" to="/watchList">
-              Watch List
+            <NavLink className="nav-link" to="/Search">
+              Search
             </NavLink>
           </Nav>
           <Button variant="outline-info" className="me-2">
