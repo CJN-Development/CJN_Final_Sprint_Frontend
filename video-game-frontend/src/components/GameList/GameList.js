@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./GameList.css"
 import {
   List,
   ListItem,
@@ -98,61 +99,58 @@ function GameList() {
   console.log(filteredGames);
 
   return (
-    <div>
+    <div className="searchComp">
       <TextField
         label="Search Games"
         value={searchQuery}
         onChange={handleSearchChange}
         variant="outlined"
+        sx={{display:'flex',flexDirection:'column',textAlign:'center',marginTop:4,marginLeft:2,marginRight:2}}
       />
 
-      <List>
+      <List sx={{width: '100%', maxWidth:'100%', padding:4, }}>
         {filteredGames.map((game) => (
-          <ListItem>
+          <ListItem alignItems="center" sx={{
+            display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: 4,
+        gap: 2,
+        borderBottom: '1px solid #ccc',
+
+          }}>
             <ListItemAvatar>
               <Avatar
                 alt={game.details.gameName}
                 src={
                   "https://m.media-amazon.com/images/M/MV5BNDM1NDkwYWEtZjNkMC00Yzc5LTkzOTMtODcxNjQ2YTg4ZWM0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"
                 }
+                sx={{width:100,height:100}}
               />
             </ListItemAvatar>
-            <ListItemText primary={game.details.gameName} />
-            <ListItemText primary={game.details.releaseDate} />
-            <ListItemText primary={game.publisher.publisherName} />
+            <ListItemText primary={`Game Title: ${game.details.gameName}`} />
+            <ListItemText primary={`Release Date: ${game.details.releaseDate}`} />
+            <ListItemText primary={`Publisher Name: ${game.publisher.publisherName}`} />
             <ListItemText
               primary={
-                game.genres.genre
+                `Genre: ${game.genres.genre
                   ? game.genres.genre.map((genre) => genre.genreName).join(", ")
-                  : "N/A"
+                  : "N/A"}`
               }
             />
             <ListItemText
-              primary={
+              primary={` Platform: ${
                 game.platforms.platform
                   ? game.platforms.platform
                       .map((platform) => platform.platformName)
                       .join(", ")
-                  : "N/A"
+                  : "N/A"}`
               }
             />
           </ListItem>
         ))}
       </List>
-      <ul>
-        {filteredGames.map((game, index) => (
-          <li key={index}>
-            {/* <strong>Game Name:</strong> {game.details.gameName}<br /> */}
-            {/* <strong>Release Date:</strong> {game.details.releaseDate}<br /> */}
-            {/* <strong>Publisher Name:</strong> {game.publisher.publisherName ? game.publisher.publisherName : "N/A" }<br /> */}
-            {/* <strong>Genre Names:</strong> {game.genres.genre ? game.genres.genre.map((genre) => genre.genreName).join(', ') : 'N/A'}<br /> */}
-            {/* <strong>Availible Platforms:</strong> {game.platforms.platform ? game.platforms.platform.map((platform) => platform.platformName).join(', ') : 'N/A'}<br /> */}
-
-            {/* Display other related data */}
-            {/* <hr /> */}
-          </li>
-        ))}
-      </ul>
+     
     </div>
   );
 }
