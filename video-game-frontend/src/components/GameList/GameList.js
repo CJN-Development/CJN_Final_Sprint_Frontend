@@ -108,17 +108,27 @@ function GameList() {
         value={searchQuery}
         onChange={handleSearchChange}
         variant="outlined"
+        sx={{display:'flex',flexDirection:'column',textAlign:'center',marginTop:4,marginLeft:2,marginRight:2}}
       />
 
-      <List>
+      <List sx={{width: '100%', maxWidth:'100%', padding:4, }}>
         {filteredGames.map((game, index) => (
-          <ListItem>
+          <ListItem sx={{
+            display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: 4,
+        gap: 2,
+        borderBottom: '1px solid #ccc',
+      
+          }}>
             <ListItemAvatar>
               <Avatar
                 alt={game.details.gameName}
                 src={
                   "https://m.media-amazon.com/images/M/MV5BNDM1NDkwYWEtZjNkMC00Yzc5LTkzOTMtODcxNjQ2YTg4ZWM0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"
                 }
+                sx={{width:100,height:100}}
               />
             </ListItemAvatar>
             <ListItemText primary={game.details.gameName} />
@@ -151,22 +161,11 @@ function GameList() {
           </ListItem>
         ))}
       </List>
-      <ul>
-        {filteredGames.map((game, index) => (
-          <li key={index}>
-            {/* <strong>Game Name:</strong> {game.details.gameName}<br /> */}
-            {/* <strong>Release Date:</strong> {game.details.releaseDate}<br /> */}
-            {/* <strong>Publisher Name:</strong> {game.publisher.publisherName ? game.publisher.publisherName : "N/A" }<br /> */}
-            {/* <strong>Genre Names:</strong> {game.genres.genre ? game.genres.genre.map((genre) => genre.genreName).join(', ') : 'N/A'}<br /> */}
-            {/* <strong>Availible Platforms:</strong> {game.platforms.platform ? game.platforms.platform.map((platform) => platform.platformName).join(', ') : 'N/A'}<br /> */}
-
-            {/* Display other related data */}
-            {/* <hr /> */}
-          </li>
-        ))}
-      </ul>
+    
     </div>
   );
 }
 
 export default GameList;
+
+
