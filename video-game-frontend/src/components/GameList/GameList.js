@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import {
   List,
   ListItem,
@@ -7,7 +9,6 @@ import {
   ListItemAvatar,
   Avatar,
   TextField,
-  Button,
   IconButton,
 } from "@mui/material";
 
@@ -58,7 +59,6 @@ function GameList() {
               publisher: publisherResponse.data,
               genres: genreResponse.data._embedded,
               platforms: platformResponse.data._embedded,
-              // Include other related data properties here
             };
           })
         );
@@ -74,7 +74,11 @@ function GameList() {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-
+  const handleDeleteGame = (gameIndex) => {
+    const updatedGames = [...games];
+    updatedGames.splice(gameIndex, 1);
+    setGames(updatedGames);
+  };
   const filteredGames = games.filter(
     (game) =>
       game.details.gameName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -107,7 +111,7 @@ function GameList() {
       />
 
       <List>
-        {filteredGames.map((game) => (
+        {filteredGames.map((game, index) => (
           <ListItem>
             <ListItemAvatar>
               <Avatar
@@ -126,6 +130,7 @@ function GameList() {
                   ? game.genres.genre.map((genre) => genre.genreName).join(", ")
                   : "N/A"
               }
+              
             />
             <ListItemText
               primary={
@@ -136,6 +141,13 @@ function GameList() {
                   : "N/A"
               }
             />
+             <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => handleDeleteGame(index)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </ListItem>
         ))}
       </List>
