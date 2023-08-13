@@ -10,11 +10,13 @@ import {
   Avatar,
   TextField,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 
 function GameList() {
   const [games, setGames] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchGames() {
@@ -49,10 +51,7 @@ function GameList() {
               game._links.gamePlatform.href,
               { headers }
             );
-            // console.log(game._links.listOfGenres.href)
-            // console.log(platformResponse);
 
-            // Fetch other related data here
             return {
               ...game,
               details: gameResponse.data,
@@ -63,8 +62,10 @@ function GameList() {
           })
         );
         setGames(gameDataWithDetails);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching games:", error);
+        setLoading(false);
       }
     }
 
@@ -108,63 +109,73 @@ function GameList() {
         value={searchQuery}
         onChange={handleSearchChange}
         variant="outlined"
-        sx={{display:'flex',flexDirection:'column',textAlign:'center',marginTop:4,marginLeft:2,marginRight:2}}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+          marginTop: 4,
+          marginLeft: 2,
+          marginRight: 2,
+        }}
       />
-
-      <List sx={{width: '100%', maxWidth:'100%', padding:4, }}>
-        {filteredGames.map((game, index) => (
-          <ListItem sx={{
-            display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: 4,
-        gap: 2,
-        borderBottom: '1px solid #ccc',
-      
-          }}>
-            <ListItemAvatar>
-              <Avatar
-                alt={game.details.gameName}
-                src={game.details.imageData
-                }
-                sx={{width:100,height:100}}
-              />
-            </ListItemAvatar>
-            <ListItemText primary={game.details.gameName} />
-            <ListItemText primary={game.details.releaseDate} />
-            <ListItemText primary={game.publisher.publisherName} />
-            <ListItemText
-              primary={
-                game.genres.genre
-                  ? game.genres.genre.map((genre) => genre.genreName).join(", ")
-                  : "N/A"
-              }
-              
-            />
-            <ListItemText
-              primary={
-                game.platforms.platform
-                  ? game.platforms.platform
-                      .map((platform) => platform.platformName)
-                      .join(", ")
-                  : "N/A"
-              }
-            />
-             <IconButton
-              edge="end"
-              aria-label="delete"
-              onClick={() => handleDeleteGame(index)}
+      {loading ? (
+        <CircularProgress
+          sx={{ display: "block", margin: "auto", color: "blue", size: 80 }}
+        />
+      ) : (
+        <List sx={{ width: "100%", maxWidth: "100%", padding: 4 }}>
+          {filteredGames.map((game, index) => (
+            <ListItem
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: 4,
+                gap: 2,
+                borderBottom: "1px solid #ccc",
+              }}
             >
-              <DeleteIcon />
-            </IconButton>
-          </ListItem>
-        ))}
-      </List>
-    
+              <ListItemAvatar>
+                <Avatar
+                  alt={game.details.gameName}
+                  src={game.details.imageData}
+                  sx={{ width: 100, height: 100 }}
+                />
+              </ListItemAvatar>
+              <ListItemText primary={game.details.gameName} />
+              <ListItemText primary={game.details.releaseDate} />
+              <ListItemText primary={game.publisher.publisherName} />
+              <ListItemText
+                primary={
+                  game.genres.genre
+                    ? game.genres.genre
+                        .map((genre) => genre.genreName)
+                        .join(", ")
+                    : "N/A"
+                }
+              />
+              <ListItemText
+                primary={
+                  game.platforms.platform
+                    ? game.platforms.platform
+                        .map((platform) => platform.platformName)
+                        .join(", ")
+                    : "N/A"
+                }
+              />
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => handleDeleteGame(index)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </ListItem>
+          ))}
+        </List>
+      )}
     </div>
   );
 }
 
 export default GameList;
-
-
