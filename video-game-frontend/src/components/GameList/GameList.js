@@ -125,8 +125,7 @@ function GameList() {
             <ListItemAvatar>
               <Avatar
                 alt={game.details.gameName}
-                src={
-                  "https://m.media-amazon.com/images/M/MV5BNDM1NDkwYWEtZjNkMC00Yzc5LTkzOTMtODcxNjQ2YTg4ZWM0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"
+                src={game.details.imageData
                 }
                 sx={{width:100,height:100}}
               />
