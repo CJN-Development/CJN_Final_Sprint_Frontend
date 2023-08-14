@@ -3,13 +3,13 @@ import "./Home.css";
 
 function Home() {
   const ListStyle = {
-    listStyleType: "circle",
+    listStyleType: "none",
     marginLeft: "20px",
   };
   return (
-    <div>
-      <div className="TopHomePage">
-        <h2>Welcome to CJND Digital Dynasty!</h2>
+    <div className="container-fluid text-center">
+      <div className="text-center">
+        <h1 className="display-4">Welcome to CJND Digital Dynasty!</h1>
         <p>
           CJND was created for you to be able to search some of your favourite
           games and find new games that you want to know some more information
@@ -18,8 +18,8 @@ function Home() {
         <p>Each game card in the search engine consists of 6 things:</p>
       </div>
       <div className="List">
-        <ul style={ListStyle}>
-          <li>Game Cover Art</li>
+        <ul style={ListStyle} className="list-unstyled gap-3">
+          <li className="">Game Cover Art</li>
           <li>Game Name</li>
           <li>Release Date</li>
           <li>Publisher Name</li>

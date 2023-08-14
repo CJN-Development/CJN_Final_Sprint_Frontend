@@ -1,21 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-*{
+* {
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  
+  font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
   padding: 0;
   margin: 0;
-
 }
 
-.App{
+.App {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   min-height: 100vh;
-  background-color: rgb(208, 24, 24);
-  color: white;
+  background-color: #e5e5f7;
+  /* opacity: 0.8; */
+  /* background-color: #e20a43; */
+  /* opacity: 0.8; */
+  background-color: #0275d8;
+  /* opacity: 0.8; */
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #0275d8 22px
+    ),
+    repeating-linear-gradient(#00000029, #0000008c);
+
+  color: rgb(253, 253, 253);
+
+  font-weight: bold;
+
+  
+
+  
+    
 }

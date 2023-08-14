@@ -33,6 +33,7 @@ function GameList() {
           headers,
         });
         console.log(response);
+        
 
         const gameDataWithDetails = await Promise.all(
           response.data._embedded.game.map(async (game) => {
@@ -101,6 +102,7 @@ function GameList() {
         .includes(searchQuery.toLowerCase())
   );
   console.log(filteredGames);
+ 
 
   return (
     <div>
@@ -108,7 +110,8 @@ function GameList() {
         label="Search Games"
         value={searchQuery}
         onChange={handleSearchChange}
-        variant="outlined"
+        variant="filled"
+        color="info"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -116,6 +119,8 @@ function GameList() {
           marginTop: 4,
           marginLeft: 2,
           marginRight: 2,
+          border:'3px solid black',
+          
         }}
       />
       {loading ? (
@@ -139,7 +144,7 @@ function GameList() {
                 <Avatar
                   alt={game.details.gameName}
                   src={game.details.imageData}
-                  sx={{ width: 100, height: 100 }}
+                  sx={{ width: 100, height: 100, border:'1px solid black'}}
                 />
               </ListItemAvatar>
               <ListItemText primary={game.details.gameName} />

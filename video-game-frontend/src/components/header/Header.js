@@ -5,9 +5,9 @@ import "./Header.css";
 
 function Header() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="primary" variant="dark" expand="lg" className="">
       <Container fluid>
-        <Navbar.Brand href="/" style={{ color: "gold" }}>
+        <Navbar.Brand href="/" style={{ color: "white" }}>
           CJND Digital Dynasty
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -17,7 +17,7 @@ function Header() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <NavLink className="nav-link" to="/Home">
+            <NavLink className="nav-link" to="/">
               Home
             </NavLink>
             <NavLink className="nav-link" to="/Search">
