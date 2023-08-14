@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import GameCarousel from "../GameCarousel/GameCarousel";
 
 function Home() {
   const ListStyle = {
@@ -9,7 +10,9 @@ function Home() {
   return (
     <div className="container-fluid text-center">
       <div className="text-center">
-        <h1 className="display-4">Welcome to CJND Digital Dynasty!</h1>
+        <h1 className="display-4 pt-3">Welcome to CJND Digital Dynasty!</h1>
+        <GameCarousel/>
+        
         <p>
           CJND was created for you to be able to search some of your favourite
           games and find new games that you want to know some more information
@@ -39,6 +42,8 @@ function Home() {
           and Devin Augot. Thanks for visiting our website!
         </p>
       </div>
+
+      
     </div>
   );
 }
