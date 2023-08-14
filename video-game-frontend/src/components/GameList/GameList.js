@@ -74,11 +74,27 @@ function GameList() {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-  const handleDeleteGame = (gameIndex) => {
-    const updatedGames = [...games];
-    updatedGames.splice(gameIndex, 1);
-    setGames(updatedGames);
+  const handleDeleteGame = async (gameUrl) => {
+    try {
+      const username = "admin";
+      const password = "admin";
+      const token = btoa(`${username}:${password}`);
+  
+      const headers = {
+        Authorization: `Basic ${token}`,
+      };
+  
+      // Make an API call to delete the game from server
+      await axios.delete(gameUrl, { headers });
+  
+      // Filter out the deleted game from the games list
+      const updatedGames = games.filter((game) => game._links.self.href !== gameUrl);
+      setGames(updatedGames);
+    } catch (error) {
+      console.error("Error deleting game:", error);
+    }
   };
+  
   const filteredGames = games.filter(
     (game) =>
       game.details.gameName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -111,8 +127,8 @@ function GameList() {
       />
 
       <List>
-        {filteredGames.map((game, index) => (
-          <ListItem>
+        {filteredGames.map((game) => (
+          <ListItem key={game._links.self.href}>
             <ListItemAvatar>
               <Avatar
                 alt={game.details.gameName}
@@ -130,7 +146,6 @@ function GameList() {
                   ? game.genres.genre.map((genre) => genre.genreName).join(", ")
                   : "N/A"
               }
-              
             />
             <ListItemText
               primary={
@@ -141,10 +156,10 @@ function GameList() {
                   : "N/A"
               }
             />
-             <IconButton
+            <IconButton
               edge="end"
               aria-label="delete"
-              onClick={() => handleDeleteGame(index)}
+              onClick={() => handleDeleteGame(game._links.self.href)}
             >
               <DeleteIcon />
             </IconButton>
