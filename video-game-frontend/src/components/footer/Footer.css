@@ -1,0 +1,19 @@
+.footer {
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #1976d2;
+    color: white;
+    text-align: center;
+  }
+  
+  .social-icons {
+    margin-top: 1rem;
+  }
+  
+  .social-icon {
+    margin: 0 0.5rem;
+  }
+
+  a{
+    color:white
+  }
